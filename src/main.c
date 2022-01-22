@@ -58,6 +58,7 @@ void start_game() {
 void new_game(bool *redraw, bool *turn_ended, int *end_of_turn_wait) {
 	*redraw = true;
 	game_over = false;
+	end_game = false;
 	play_stage = 0;
 	slanted_board = 0;
 	*turn_ended = false;
@@ -186,6 +187,7 @@ float cursor_y;
 int play_stage;
 int taking_turn;
 bool game_over;
+bool end_game;
 
 int main() {
 	ALLEGRO_FONT *font = NULL;
@@ -231,6 +233,7 @@ int main() {
 	peg_cursor = al_create_mouse_cursor(sprites.cursor, 7, 3);
 
 	game_over = false;
+	end_game = false;
 	play_stage = 0;
 	slanted_board = 0;
 	bool turn_ended = false;
@@ -258,7 +261,10 @@ int main() {
 					end_of_turn_wait == 0
 				) {
 					turn_ended = false;
-					if (taking_turn == 0) {
+					if (end_game) {
+						game_over = true;
+					}
+					else if (taking_turn == 0) {
 						taking_turn = 1;
 						if (slanted_board == 0)
 							switch_view();

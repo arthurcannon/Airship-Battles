@@ -32,6 +32,7 @@ void render_cursor(float x, float y, ALLEGRO_DISPLAY *display);
 extern SPRITES sprites;
 extern ALLEGRO_MOUSE_CURSOR *peg_cursor;
 extern bool game_over;
+extern bool end_game;
 extern int play_stage;
 extern int taking_turn;
 extern float cursor_x;

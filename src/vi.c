@@ -33,7 +33,7 @@ void init_vi() {
 }
 
 void vi_change_direction() {
-	puts("change direction called");
+//	puts("change direction called");
 	if (vi_state.search_dir == 0 && (vi_state.dir_searched == 1 || vi_state.dir_searched == 3)) {
 		vi_state.search_dir = 2;
 		vi_state.dir_searched++;
@@ -63,11 +63,11 @@ void vi_change_direction() {
 		vi_state.dir_searched++;
 	}
 	vi_state.add_to_dir = 1;
-	printf("new direction %i\ndirections searched %i\n", vi_state.search_dir, vi_state.dir_searched);
+//	printf("new direction %i\ndirections searched %i\n", vi_state.search_dir, vi_state.dir_searched);
 }
 
 bool vi_fire(int x, int y) {
-	puts("firing");
+//	puts("firing");
 	if (x > 9 || x < 0 || y > 9 || y < 0)
 		return false;
 	GRID_SQUARE *sq = &boards[1][y][x];
@@ -86,7 +86,7 @@ bool vi_fire(int x, int y) {
 				SHIP *s = &ships[1][i];
 				for (int j = 0; j < s->length; j++) {
 					if (s->loc[j] == sq) {
-						printf("ship should set and type is %i\n", s->type);
+//						printf("ship should set and type is %i\n", s->type);
 						vi_state.shots_fired[vi_state.shot_count].ship = s;
 						break;
 					}
@@ -102,7 +102,7 @@ bool vi_fire(int x, int y) {
 }
 
 SHOT vi_increment_direction() {
-	puts("increment direction called");
+//	puts("increment direction called");
 	SHOT shot = *vi_state.search_center;
 	switch (vi_state.search_dir) {
 		case 0:
@@ -122,10 +122,10 @@ SHOT vi_increment_direction() {
 		shot.hit = boards[1][shot.y][shot.x].hit;
 	else
 		shot.hit = false;
-	int hit;
-	if (shot.hit) hit = 1;
-	else hit = 0;
-	printf("Results:\nx: %i\ny: %i\nhit: %i\n", shot.x, shot.y, hit);
+//	int hit;
+//	if (shot.hit) hit = 1;
+//	else hit = 0;
+//	printf("Results:\nx: %i\ny: %i\nhit: %i\n", shot.x, shot.y, hit);
 	return shot;
 }
 
@@ -137,9 +137,9 @@ void vi_take_turn() {
 		!(vi_state.ship_search && !vi_state.search_center->ship->is_sunk) &&
 		!(vi_state.last_shot_was_hit && !vi_state.shots_fired[vi_state.shot_count - 1].ship->is_sunk)
 	) {
-		puts("Entering the lost shot finding logic");
+//		puts("Entering the lost shot finding logic");
 		for (int i = vi_state.shot_count - 1; i > -1; i--) {
-			printf("loop %i\n", i);
+//			printf("loop %i\n", i);
 			SHOT *shot = &vi_state.shots_fired[i];
 			if (shot->hit && !shot->ship->is_sunk) {
 				vi_state.ship_search = true;
@@ -147,30 +147,30 @@ void vi_take_turn() {
 				vi_state.add_to_dir = 0;
 				vi_state.dir_searched = 1;
 				vi_state.search_dir = between(0, 4);
-				printf("x: %i\ny: %i\nsearch direction: %i\ndirections searched: %i\nshot count: %i\n", vi_state.search_center->x, vi_state.search_center->y, vi_state.search_dir, vi_state.dir_searched, vi_state.shot_count);
+//				printf("x: %i\ny: %i\nsearch direction: %i\ndirections searched: %i\nshot count: %i\n", vi_state.search_center->x, vi_state.search_center->y, vi_state.search_dir, vi_state.dir_searched, vi_state.shot_count);
 				break;
 			}
 		}
 	}
 	if (vi_state.ship_search && !vi_state.search_center->ship->is_sunk) {
-		puts("performing ship search");
-		printf("x: %i\ny: %i\nsearch direction: %i\ndirections searched: %i\nshot count: %i\n", vi_state.search_center->x, vi_state.search_center->y, vi_state.search_dir, vi_state.dir_searched, vi_state.shot_count);
+//		puts("performing ship search");
+//		printf("x: %i\ny: %i\nsearch direction: %i\ndirections searched: %i\nshot count: %i\n", vi_state.search_center->x, vi_state.search_center->y, vi_state.search_dir, vi_state.dir_searched, vi_state.shot_count);
 		if (vi_state.last_shot_was_hit) {
-			puts("last time was a hit");
+//			puts("last time was a hit");
 			vi_state.add_to_dir++;
 			shot = vi_increment_direction();
 		}
 		else {
-			puts("last time was a flop");
+//			puts("last time was a flop");
 			vi_change_direction();
 			shot = vi_increment_direction();
 		}
 		while (!vi_fire(shot.x, shot.y)) {
-			puts("fire loop");
+//			puts("fire loop");
 			if (!shot.hit)
 				vi_change_direction();
 			else {
-				puts("it was a hit");
+//				puts("it was a hit");
 				vi_state.add_to_dir++;
 			}
 			shot = vi_increment_direction();
@@ -179,7 +179,7 @@ void vi_take_turn() {
 			vi_state.ship_search = false;
 	}
 	else if  (vi_state.last_shot_was_hit && !vi_state.shots_fired[vi_state.shot_count - 1].ship->is_sunk) {
-		puts("hey we hit somthing last turn");
+//		puts("hey we hit somthing last turn");
 		vi_state.ship_search = true;
 		vi_state.search_center = &vi_state.shots_fired[vi_state.shot_count - 1];
 		vi_state.add_to_dir = 1;
@@ -187,17 +187,17 @@ void vi_take_turn() {
 		do {
 			vi_state.search_dir = between(0, 4);
 			shot = vi_increment_direction();
-			puts("fire loop");
+//			puts("fire loop");
 		} while (!vi_fire(shot.x, shot.y));
 		if (vi_state.last_shot_was_hit && vi_state.search_center->ship->is_sunk)
 			vi_state.ship_search = false;
 	}
 	else {
-		puts("rand shot");
+//		puts("rand shot");
 		do {
 			x = between(0, 10);
 			y = between(0, 10);
-			printf("x: %i\ny: %i\n", x, y);
+//			printf("x: %i\ny: %i\n", x, y);
 		} while (!vi_fire(x, y));
 	}
 }

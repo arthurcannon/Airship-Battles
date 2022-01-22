@@ -75,7 +75,7 @@ void check_for_game_over() {
 				ships_sunk++;
 		}
 		if (ships_sunk == SHIP_N)
-			game_over = true;
+			end_game = true;
 	}
 }
 
