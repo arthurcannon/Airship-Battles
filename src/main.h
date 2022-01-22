@@ -1,11 +1,14 @@
 typedef struct SPRITES {
 	ALLEGRO_BITMAP* _sheet;
 
+	ALLEGRO_BITMAP* icon;
+
 	ALLEGRO_BITMAP* play;
 	ALLEGRO_BITMAP* new;
 	ALLEGRO_BITMAP* switch_view;
 	ALLEGRO_BITMAP* rotate_h;
 	ALLEGRO_BITMAP* rotate_v;
+	ALLEGRO_BITMAP* checkmark;
 
 	ALLEGRO_BITMAP* top;
 	ALLEGRO_BITMAP* side;
@@ -23,4 +26,13 @@ int between(int lo, int hi);
 float between_f(float lo, float hi);
 ALLEGRO_BITMAP* sprite_grab(int x, int y, int w, int h);
 void sprites_init();
+void start_game();
+void new_game();
+void render_cursor(float x, float y, ALLEGRO_DISPLAY *display);
 extern SPRITES sprites;
+extern ALLEGRO_MOUSE_CURSOR *peg_cursor;
+extern bool game_over;
+extern int play_stage;
+extern int taking_turn;
+extern float cursor_x;
+extern float cursor_y;
