@@ -1,0 +1,76 @@
+slanted_board	board.c	/^int slanted_board = 0;$/;"	v
+boards	board.c	/^GRID_SQUARE boards[2][10][10];$/;"	v
+build_board	board.c	/^void build_board(bool rebuild) {$/;"	f
+update_board	board.c	/^void update_board() {$/;"	f
+fire	board.c	/^void fire(int x, int y) {$/;"	f
+switch_view	board.c	/^void switch_view() {$/;"	f
+SHIP_TYPES	ships.h	/^typedef enum SHIP_TYPES {$/;"	g
+S_H_SHIP	ships.h	/^	S_H_SHIP = 0,$/;"	e	enum:SHIP_TYPES
+H_SHIP	ships.h	/^	H_SHIP,$/;"	e	enum:SHIP_TYPES
+S_SHIP	ships.h	/^	S_SHIP,$/;"	e	enum:SHIP_TYPES
+L_SHIP	ships.h	/^	L_SHIP,$/;"	e	enum:SHIP_TYPES
+S_L_SHIP	ships.h	/^	S_L_SHIP,$/;"	e	enum:SHIP_TYPES
+SHIP_N	ships.h	/^	SHIP_N$/;"	e	enum:SHIP_TYPES
+SHIP_TYPES	ships.h	/^} SHIP_TYPES;$/;"	t	typeref:enum:SHIP_TYPES
+SHIP	ships.h	/^typedef struct SHIP {$/;"	s
+loc	ships.h	/^	GRID_SQUARE *loc[5];$/;"	m	struct:SHIP
+type	ships.h	/^	SHIP_TYPES type;$/;"	m	struct:SHIP
+length	ships.h	/^	int length;$/;"	m	struct:SHIP
+rotation	ships.h	/^	int rotation;$/;"	m	struct:SHIP
+in_movment	ships.h	/^	bool in_movment;$/;"	m	struct:SHIP
+is_sunk	ships.h	/^  bool is_sunk;$/;"	m	struct:SHIP
+SHIP	ships.h	/^} SHIP;$/;"	t	typeref:struct:SHIP
+build_ships	ships.h	/^void build_ships();$/;"	p
+draw_ships	ships.h	/^void draw_ships();$/;"	p
+place_ship	ships.h	/^bool place_ship(int x, int y, SHIP *ship, int board);$/;"	p
+GRID_SQUARE	board.h	/^typedef struct GRID_SQUARE {$/;"	s
+x	board.h	/^	float x, y;$/;"	m	struct:GRID_SQUARE
+y	board.h	/^	float x, y;$/;"	m	struct:GRID_SQUARE
+fired_on	board.h	/^	bool fired_on;$/;"	m	struct:GRID_SQUARE
+hit	board.h	/^  bool hit;$/;"	m	struct:GRID_SQUARE
+GRID_SQUARE	board.h	/^} GRID_SQUARE;$/;"	t	typeref:struct:GRID_SQUARE
+build_board	board.h	/^void build_board(bool rebuild);$/;"	p
+update_board	board.h	/^void update_board();$/;"	p
+fire	board.h	/^void fire(int x, int y);$/;"	p
+switch_view	board.h	/^void switch_view();$/;"	p
+boards	board.h	/^extern GRID_SQUARE boards[2][10][10];$/;"	x
+slanted_board	board.h	/^extern int slanted_board;$/;"	x
+SPRITES	main.h	/^typedef struct SPRITES {$/;"	s
+_sheet	main.h	/^	ALLEGRO_BITMAP* _sheet;$/;"	m	struct:SPRITES
+play	main.h	/^	ALLEGRO_BITMAP* play;$/;"	m	struct:SPRITES
+switch_view	main.h	/^	ALLEGRO_BITMAP* switch_view;$/;"	m	struct:SPRITES
+rotate_h	main.h	/^	ALLEGRO_BITMAP* rotate_h;$/;"	m	struct:SPRITES
+rotate_v	main.h	/^	ALLEGRO_BITMAP* rotate_v;$/;"	m	struct:SPRITES
+top	main.h	/^	ALLEGRO_BITMAP* top;$/;"	m	struct:SPRITES
+side	main.h	/^	ALLEGRO_BITMAP* side;$/;"	m	struct:SPRITES
+hit	main.h	/^	ALLEGRO_BITMAP* hit;$/;"	m	struct:SPRITES
+miss	main.h	/^	ALLEGRO_BITMAP* miss;$/;"	m	struct:SPRITES
+cursor	main.h	/^	ALLEGRO_BITMAP* cursor;$/;"	m	struct:SPRITES
+ships	main.h	/^	ALLEGRO_BITMAP* ships[5];$/;"	m	struct:SPRITES
+SPRITES	main.h	/^} SPRITES;$/;"	t	typeref:struct:SPRITES
+error	main.h	/^void error(char *msg);$/;"	p
+al_must_init	main.h	/^void al_must_init(bool test, const char *description);$/;"	p
+collide	main.h	/^bool collide(int ax1, int ay1, int ax2, int ay2, int bx1, int by1, int bx2, int by2);$/;"	p
+deg_to_rad	main.h	/^float deg_to_rad(float deg);$/;"	p
+between	main.h	/^int between(int lo, int hi);$/;"	p
+between_f	main.h	/^float between_f(float lo, float hi);$/;"	p
+sprite_grab	main.h	/^ALLEGRO_BITMAP* sprite_grab(int x, int y, int w, int h);$/;"	p
+sprites_init	main.h	/^void sprites_init();$/;"	p
+sprites	main.h	/^extern SPRITES sprites;$/;"	x
+ships	ships.c	/^SHIP ships[2][SHIP_N];$/;"	v
+build_ships	ships.c	/^void build_ships() {$/;"	f
+draw_ships	ships.c	/^void draw_ships() {$/;"	f
+place_ship	ships.c	/^bool place_ship(int x, int y, SHIP *ship, int board) {$/;"	f
+error	main.c	/^void error(char *msg) {$/;"	f
+al_must_init	main.c	/^void al_must_init(bool test, const char *description) {$/;"	f
+collide	main.c	/^bool collide(int ax1, int ay1, int ax2, int ay2, int bx1, int by1, int bx2, int by2) {$/;"	f
+deg_to_rad	main.c	/^float deg_to_rad(float deg) {$/;"	f
+between	main.c	/^int between(int lo, int hi) {$/;"	f
+between_f	main.c	/^float between_f(float lo, float hi) {$/;"	f
+sprites	main.c	/^SPRITES sprites;$/;"	v
+sprite_grab	main.c	/^ALLEGRO_BITMAP* sprite_grab(int x, int y, int w, int h) {$/;"	f
+sprites_init	main.c	/^void sprites_init() {$/;"	f
+sprites_deinit	main.c	/^void sprites_deinit() {$/;"	f
+SCALED_WIDTH	main.c	103;"	d	file:
+SCALED_HEIGHT	main.c	104;"	d	file:
+main	main.c	/^int main() {$/;"	f
